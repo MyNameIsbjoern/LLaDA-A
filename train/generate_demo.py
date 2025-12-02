@@ -18,6 +18,17 @@ import time
 import sys
 import warnings
 
+DEBUG = True
+
+if DEBUG:
+    import debugpy
+    import socket
+
+    print(f"Waiting for debugger on {socket.gethostname()}:5678...")
+    debugpy.listen(("0.0.0.0", 5678))
+    debugpy.wait_for_client()
+    print("Debugger attached! Continuing...")
+
 prompt_interval_steps = 25
 gen_interval_steps = 7
 transfer_ratio = 0.25
